@@ -54,6 +54,8 @@ export class AppComponent {
         this._dataService.add(this.product).subscribe(
           (res) => {
             this.getProduct();
+            console.log(res);
+
             this.messageService.add({
               severity: 'success',
               summary: 'Success',

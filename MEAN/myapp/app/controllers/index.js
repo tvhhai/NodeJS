@@ -1,4 +1,4 @@
-const Text = require("../models/test");
+const Test = require("../models/test");
 
 exports.get = function (req, res, next) {
   // res.render('index', { title: 'Express' })
@@ -15,18 +15,21 @@ exports.get = function (req, res, next) {
   // });
 
   // Promise
-  Text.find({})
+  Test.find({})
     .then((data) => res.json(data))
     .catch(next);
 };
 
 exports.getById = function (req, res, next) {
-  Text.findById(req.params.id)
+  Test.findById(req.params.id)
     .then((data) => res.json(data))
     .catch(next);
 };
 
-exports.add = function (req, res, next) {};
+exports.add = function (req, res, next) {
+  const test = new Test(req.body);
+  test.save().then(res.status(204)).catch(next);
+};
 
 exports.update = function (req, res, next) {};
 
