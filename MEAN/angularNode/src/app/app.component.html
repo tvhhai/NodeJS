@@ -1,0 +1,107 @@
+<h1>{{ title }} " From app "</h1>
+
+<div style="max-height: 90vh; overflow: auto">
+  <form class="edit-form p-p-2" #userForm="ngForm">
+    <div class="p-fluid p-grid">
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input
+            required
+            pInputText
+            class="edit-form"
+            type="text"
+            name="name"
+            [(ngModel)]="product.name"
+            autocomplete="off"
+          />
+          <label for="inputtext">Product Name</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input
+            pInputText
+            class="edit-form"
+            type="text"
+            name="price"
+            [(ngModel)]="product.price"
+            autocomplete="off"
+          />
+          <label for="inputtext-left">Product Price</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input
+            pInputText
+            class="edit-form"
+            type="text"
+            name="image"
+            [(ngModel)]="product.image"
+            autocomplete="off"
+          />
+          <label for="inputtext-right">Product image</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <button
+          class="p-button-success"
+          type="submit"
+          (click)="addProduct()"
+          pButton
+          type="button"
+        >
+          {{ valBtn }}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <p-toast></p-toast>
+  <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+  ></p-confirmDialog>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of products">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+
+        <td>{{ item.price }}</td>
+        <td>
+          <img style="width: 100px" src="{{ item.image }}" alt="" />
+        </td>
+        <td>
+          <button
+            class="p-m-1 p-button-success"
+            (click)="edit(item.id)"
+            pButton
+            type="button"
+          >
+            Update
+          </button>
+
+          <button
+            class="p-m-1 p-button-danger"
+            pButton
+            type="button"
+            (click)="deleteProduct(item.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
