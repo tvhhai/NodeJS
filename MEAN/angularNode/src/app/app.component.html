@@ -64,42 +64,46 @@
   ></p-confirmDialog>
 
   <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>image</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of products">
-        <td>{{ item.name }}</td>
+    <app-loading *ngIf="loading; else loadingFalse"></app-loading>
 
-        <td>{{ item.price }}</td>
-        <td>
-          <img style="width: 100px" src="{{ item.image }}" alt="" />
-        </td>
-        <td>
-          <button
-            class="p-m-1 p-button-success"
-            (click)="edit(item.id)"
-            pButton
-            type="button"
-          >
-            Update
-          </button>
+    <ng-template #loadingFalse>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of products">
+          <td>{{ item.name }}</td>
 
-          <button
-            class="p-m-1 p-button-danger"
-            pButton
-            type="button"
-            (click)="deleteProduct(item.id)"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
+          <td>{{ item.price }}</td>
+          <td>
+            <img style="width: 100px" src="{{ item.image }}" alt="" />
+          </td>
+          <td>
+            <button
+              class="p-m-1 p-button-success"
+              (click)="edit(item.id)"
+              pButton
+              type="button"
+            >
+              Update
+            </button>
+
+            <button
+              class="p-m-1 p-button-danger"
+              pButton
+              type="button"
+              (click)="deleteProduct(item.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </ng-template>
   </table>
 </div>

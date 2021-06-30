@@ -25,6 +25,7 @@ export class AppComponent {
     price: '',
     image: '',
   };
+  loading = true;
 
   position!: string;
 
@@ -45,7 +46,10 @@ export class AppComponent {
   }
 
   getProduct() {
-    this._dataService.getAll().subscribe((res) => (this.products = res));
+    this._dataService.getAll().subscribe((res) => {
+      this.products = res;
+      this.loading = false;
+    });
   }
 
   addProduct() {

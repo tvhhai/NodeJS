@@ -21,11 +21,11 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { LoadingComponent } from './components/loading/loading.component';
 // @Decorator
 @NgModule({
   //metadata
-  declarations: [AppComponent], // khai báo component
+  declarations: [AppComponent, LoadingComponent], // khai báo component
   imports: [
     BrowserModule,
     AppRoutingModule,
