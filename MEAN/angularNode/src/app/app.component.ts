@@ -85,7 +85,7 @@ export class AppComponent {
                 this.messageService.add({
                   severity: 'success',
                   summary: 'Success',
-                  detail: 'Update success',
+                  detail: res.message,
                 });
                 this.id = null;
                 this.isUpdate = false;
@@ -135,7 +135,7 @@ export class AppComponent {
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
-              detail: 'Delete success',
+              detail: res.message,
             });
           },
           (err) => {
@@ -143,7 +143,7 @@ export class AppComponent {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: 'You have rejected',
+              detail: err.message,
             });
           }
         );

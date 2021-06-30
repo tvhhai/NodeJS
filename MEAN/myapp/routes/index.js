@@ -8,8 +8,8 @@ function route(app) {
   app.get("/:id", indexController.getById);
   app.get("/", indexController.get);
   app.post("/", indexController.add);
-  app.put("/", indexController.update);
-  app.delete("/", indexController.delete);
+  app.put("/:id", indexController.update);
+  app.delete("/:id", indexController.delete);
 
   app.use("/users", userRouter);
 }

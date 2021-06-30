@@ -1,4 +1,4 @@
-const Test = require("../models/test");
+const Test = require("../models/Test");
 
 exports.get = function (req, res, next) {
   // res.render('index', { title: 'Express' })
@@ -21,16 +21,50 @@ exports.get = function (req, res, next) {
 };
 
 exports.getById = function (req, res, next) {
-  Test.findById(req.params.id)
+  const id = req.params.id;
+  Test.findById(id)
     .then((data) => res.json(data))
     .catch(next);
 };
 
 exports.add = function (req, res, next) {
   const test = new Test(req.body);
-  test.save().then(res.status(204)).catch(next);
+  test
+    .save()
+    .then((data) => res.send(data))
+    .catch(next);
 };
 
-exports.update = function (req, res, next) {};
+exports.update = function (req, res, next) {
+  const id = req.params.id;
+  Test.findByIdAndUpdate(id, req.body)
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`,
+        });
+      } else res.send({ message: "Tutorial was updated successfully." });
+    })
+    .catch(next);
+};
 
-exports.delete = function (req, res, next) {};
+exports.delete = function (req, res, next) {
+  const id = req.params.id;
+  Test.findByIdAndRemove(id)
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
+        });
+      } else {
+        res.send({
+          message: "Tutorial was deleted successfully!",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete Tutorial with id=" + id,
+      });
+    });
+};
