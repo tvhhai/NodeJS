@@ -3,3 +3,7 @@
 
 [dev]
   publish = "dist"
+[[redirect]]
+    to="/.netlify/functions/api/:slat"
+    from="/*"
+    status=200
