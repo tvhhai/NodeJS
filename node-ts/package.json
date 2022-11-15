@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p .",
+    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +27,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^6.7.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^3.1.0"
   }
 }

@@ -6,6 +6,7 @@ import connect from "./config/database";
 import BaseRouter from "./routes";
 import cors from "cors";
 import bodyParser from "body-parser";
+import serverless from "serverless-http";
 
 // **** Init express **** //
 
@@ -74,3 +75,6 @@ app.use("/", function (req, res) {
 });
 
 export default app;
+module.exports.handler = serverless(app);
+
+ 
